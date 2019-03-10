@@ -21,3 +21,14 @@ let isSameTree = function(p, q) {
 }
 
 isSameTree()
+
+let BFS = function(root) {
+  let queue = []
+  queue.push(root)
+  while (queue.length > 0) {
+    let temp = queue.shift()
+    console.log(temp.val)
+    queue.push(temp.left)
+    queue.push(temp.right)
+  }
+}
