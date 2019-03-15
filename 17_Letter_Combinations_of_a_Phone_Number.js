@@ -1,4 +1,8 @@
 /**
+ * 解决办法
+ * 回溯
+ */
+/**
  * @param {string} digits
  * @return {string[]}
  */
@@ -6,14 +10,18 @@ const KEYS = ['', '', 'abc', 'def', 'ghi', 'jkl', 'mno', 'pqrs', 'tuv', 'wxyz' ]
 
 let letterCombinations = function(digits) {
   let res = []
-  combination(digits, 0)
+  if (digits.length > 0) {
+    combination(digits, 0, '', res)
+  }
   return res
 }
 
-let combination = function(digits, offset) {
-  let letters = KEYS[digits[digits.length - 1] - '0']
-  for (let i = 0; i < letters.length; i++) {
-    let str = combination(digits.subString(0, digits.length - 1)) + letters[i]
+let combination = function(digits, offset, letters, res) {
+  if (offset === digits.length) {
+    res.push(letters)
+    return
   }
-  if ()
+  for (let i = 0; i < KEYS[parseInt(digits[offset])].length; i++) {
+    combination(digits, offset + 1, letters + KEYS[parseInt(digits[offset])][i], res)
+  }
 }
