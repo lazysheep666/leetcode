@@ -7,7 +7,7 @@
  * 根据pivot点的值得出target是在左半部分还是在右半部分
  * 在target所在部分进行二分查找
  * 解决办法3:
- * 这个办法的思路是让二分的点（mid）向target处收敛
+* 这个办法的思路是让二分的点（mid）向target处收敛
  * 如果target与mid在同一部分，直接进行二分即可
  * 如果target与mid不在同一部分，更改mid的值为 inf 或者 -inf 让其向target的部分靠拢
  */

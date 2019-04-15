@@ -22,4 +22,20 @@ let deleteDuplicates = function(head) {
   return head
 }
 
+let deleteDuplicates = function(head) {
+  let real = head
+  let cur = head ? head.next : null
+  while (cur) {
+    if (cur.val === real.val) {
+      cur = cur.next
+    } else {
+      real.next = cur
+      real = cur
+      cur = cur.next
+    }
+    real.next = null
+  }
+  return head
+}
+
 deleteDuplicates()
