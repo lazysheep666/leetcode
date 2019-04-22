@@ -23,4 +23,19 @@ let maxSubArray = function(nums) {
   return max
 }
 
-maxSubArray()
+// maxSubArray()
+let maxSubArray = function(nums) {
+  let r = 0
+  let maxSum = Number.NEGATIVE_INFINITY
+  let windowSum = 0
+  while (r === nums.length) {
+    windowSum += nums[r]
+    if (windowSum < 0) {
+      windowSum = 0
+    }
+    maxSum = Math.max(maxSum, windowSum)
+    r++
+  }
+  return maxSum
+}
+maxSubArray([2, 1])
