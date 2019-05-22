@@ -21,9 +21,6 @@
  * @return {TreeNode}
  */
 let buildTree = function(preorder, inorder) {
-  if (preorder.length === 0 || inorder.length === 0) {
-    return null
-  }
   return helper(0, preorder.length - 1, 0, preorder.length - 1, preorder, inorder)
 }
 

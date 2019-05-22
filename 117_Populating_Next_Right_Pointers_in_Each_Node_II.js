@@ -11,16 +11,18 @@
  * @param {Node} root
  * @return {Node}
  */
+
+// bfs
 let connect = function(root) {
   if (root === null) {
     return null
   }
-  let queue = []
-  queue.push(root)
+
+  let queue = [root]
+  let prevNode = null
   while (queue.length > 0) {
-    let nodesNum = queue.length
-    let prevNode = null
-    while (nodesNum > 0) {
+    let sameLevelNum = queue.length
+    while (sameLevelNum) {
       let node = queue.shift()
       if (prevNode) {
         prevNode.next = node
@@ -32,39 +34,39 @@ let connect = function(root) {
         queue.push(node.right)
       }
       prevNode = node
-      nodesNum--
+      sameLevelNum--
     }
+    prevNode = null
   }
   return root
 }
 
 let connect = function(root) {
-  if (!root || !root.left) { // sanity check
-    return
-  }
-
-  root.left.next = root.right // connect left -> right
-  root.right.next = root.next ? root.next.left : null // connect right -> next's left
-
-  connect(root.left)
-  connect(root.right)
-}
-
-/**
- * @param {TreeLinkNode} root
- * @return {void} Do not return anything, modify tree in-place instead.
- */
-let connect = function(root) {
-  if (root === null) {
-    return
-  }
   let level = root
-  while (level.left) {
-    let nextLevel = level.left
+  while (level) {
+    let nextLevel = null
+    let prevHead = null
+    let flag = true
     while (level) {
-      level.left.next = level.right
-      if (level.next) {
-        level.right.next = level.next.left
+      if (level.left) {
+        if (prevHead) {
+          prevHead.next = level.left
+        }
+        prevHead = level.left
+        if (flag) {
+          nextLevel = level.left
+          flag = false
+        }
+      }
+      if (level.right) {
+        if (prevHead) {
+          prevHead.next = level.right
+        }
+        prevHead = level.right
+        if (flag) {
+          nextLevel = level.right
+          flag = false
+        }
       }
       level = level.next
     }
